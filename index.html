@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Counter Application</title>
+    <style>
+        /* Base styles and center positioning */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f7f6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        /* Card Container styling */
+        .counter-container {
+            background-color: #ffffff;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            width: 300px;
+        }
+
+        h1 {
+            font-size: 1.5rem;
+            color: #333333;
+            margin-bottom: 1.5rem;
+        }
+
+        /* Large count number display */
+        #counter-value {
+            font-size: 4rem;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-bottom: 2rem;
+            transition: color 0.2s ease;
+        }
+
+        /* Button configurations */
+        .button-group {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+        }
+
+        button {
+            padding: 12px 20px;
+            font-size: 1.2rem;
+            font-weight: bold;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: background-color 0.2s ease, transform 0.1s ease;
+            color: #ffffff;
+            flex: 1;
+        }
+
+        /* Individual button colors */
+        #decrement {
+            background-color: #e74c3c;
+        }
+
+        #decrement:hover {
+            background-color: #c0392b;
+        }
+
+        #increment {
+            background-color: #2ecc71;
+        }
+
+        #increment:hover {
+            background-color: #27ae60;
+        }
+
+        #reset {
+            background-color: #7f8c8d;
+        }
+
+        #reset:hover {
+            background-color: #95a5a6;
+        }
+
+        /* Active click effect */
+        button:active {
+            transform: scale(0.95);
+        }
+    </style>
+</head>
+<body>
+
+    <div class="counter-container">
+        <h1>Counter</h1>
+        <!-- Number Display -->
+        <div id="counter-value">0</div>
+        
+        <!-- Interactive Buttons -->
+        <div class="button-group">
+            <button id="decrement">-</button>
+            <button id="reset">Reset</button>
+            <button id="increment">+</button>
+        </div>
+    </div>
+
+    <script>
+        // Track the count state
+        let count = 0;
+
+        // Select the HTML elements
+        const valueDisplay = document.getElementById('counter-value');
+        const incrementBtn = document.getElementById('increment');
+        const decrementBtn = document.getElementById('decrement');
+        const resetBtn = document.getElementById('reset');
+
+        // Update the display text color dynamically based on value
+        function updateDisplay() {
+            valueDisplay.textContent = count;
+            if (count > 0) {
+                valueDisplay.style.color = '#2ecc71'; // Green for positive numbers
+            } else if (count < 0) {
+                valueDisplay.style.color = '#e74c3c'; // Red for negative numbers
+            } else {
+                valueDisplay.style.color = '#2c3e50'; // Default dark blue for zero
+            }
+        }
+
+        // Add event listeners to the buttons
+        incrementBtn.addEventListener('click', () => {
+            count++;
+            updateDisplay();
+        });
+
+        decrementBtn.addEventListener('click', () => {
+            count--;
+            updateDisplay();
+        });
+
+        resetBtn.addEventListener('click', () => {
+            count = 0;
+            updateDisplay();
+        });
+    </script>
+
+</body>
+</html>
